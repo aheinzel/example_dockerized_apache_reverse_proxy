@@ -1,8 +1,8 @@
 FROM alpine:latest
 
-RUN apk add apache2 apache2-mod-wsgi python3
+RUN apk add --no-cache apache2 apache2-mod-wsgi python3
 RUN python3 -m ensurepip
-RUN pip3 install flask
+RUN pip3 --no-cache-dir install flask
 
 RUN sed -i -r 's@^ *(ErrorLog )[^ ]+@\1/dev/stderr\2@' /etc/apache2/httpd.conf
 RUN sed -i -r 's@^ *(CustomLog )[^ ]+@\1/dev/stderr\2@' /etc/apache2/httpd.conf
